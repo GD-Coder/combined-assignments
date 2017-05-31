@@ -13,7 +13,8 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
  * ...etc
  */
 public class Fibonacci {
-
+	static int arr[];
+	int count;
     /**
      * Calculates the value in the Fibonacci sequence at a given index. For example,
      * `atIndex(0)` and `atIndex(1)` should return `1`, because the first two elements of the
@@ -24,7 +25,23 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given index is less than zero
      */
     public static int atIndex(int i) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	for(int x = 0; x < arr.length; x++)
+    	{
+    		if (x == 0 || x == 1)
+    		{	
+    			arr[x] = 1;
+    		}
+    		else
+    		{
+    			
+    			arr[x] = arr[x - 1] + arr[x - 2];
+    		}
+    		
+    		
+    	}
+    	return arr[i];
+    	
+        //throw new NotImplementedException();
     }
 
     /**
@@ -38,7 +55,11 @@ public class Fibonacci {
      *                                  given end is less than the given start
      */
     public static int[] slice(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	
+    	
+    	
+    	return arr;
+        //throw new NotImplementedException();
     }
 
     /**
@@ -49,6 +70,26 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given count is negative
      */
     public static int[] fibonacci(int count) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	int[] arr = new int[count]; 
+    	
+    	for(int i = 0; i < count; i++)
+    	{
+    		if (i == 0 || i == 1)
+    		{	
+    			arr[i] = 1;
+    		}
+    		else
+    		{
+    			
+    			arr[i] = arr[i - 1] + arr[i - 2];
+    		}
+    		
+    		
+    	}
+    	
+    	
+    	return arr;
+		//System.out.println(arr); 
+        //throw new NotImplementedException();
     }
 }
