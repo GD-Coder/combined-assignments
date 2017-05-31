@@ -99,8 +99,17 @@ public class FizzBuzz {
 		if (end < start) {
 			throw new IllegalArgumentException();
 		}
-
-		throw new NotImplementedException();
+		String[] arr = new String[154];
+		for(int x = 0; x < arr.length; x++)
+		{
+			String m = FizzBuzz.message(x);
+			if(m != null)
+			{
+				arr[x] = m; 
+			}
+		}
+		return arr;
+		//throw new NotImplementedException();
 	}
 
 	/**
