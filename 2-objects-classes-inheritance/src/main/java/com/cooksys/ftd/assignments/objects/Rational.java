@@ -3,6 +3,8 @@ package com.cooksys.ftd.assignments.objects;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Rational implements IRational {
+	private int num, den;
+	
     /**
      * Constructor for rational values of the type:
      * <p>
@@ -15,7 +17,13 @@ public class Rational implements IRational {
      * @throws IllegalArgumentException if the given denominator is 0
      */
     public Rational(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if(denominator == 0)
+    	{
+    		throw new IllegalArgumentException();
+    	}
+    	this.num = numerator;
+    	this.den = denominator;
+        //throw new NotImplementedException();
     }
 
     /**
@@ -23,7 +31,8 @@ public class Rational implements IRational {
      */
     @Override
     public int getNumerator() {
-        throw new NotImplementedException();
+    	return this.num;
+        //throw new NotImplementedException();
     }
 
     /**
@@ -31,7 +40,8 @@ public class Rational implements IRational {
      */
     @Override
     public int getDenominator() {
-        throw new NotImplementedException();
+    	return this.den;
+        //throw new NotImplementedException();
     }
 
     /**
@@ -47,7 +57,13 @@ public class Rational implements IRational {
      */
     @Override
     public Rational construct(int numerator, int denominator) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if(denominator == 0)
+    	{
+    		throw new IllegalArgumentException();
+    	}
+    	return new Rational(this.num, this.den);
+    	
+    	//throw new NotImplementedException();
     }
 
     /**
@@ -58,7 +74,9 @@ public class Rational implements IRational {
      */
     @Override
     public boolean equals(Object obj) {
-        throw new NotImplementedException();
+    	
+    	return true;
+       // throw new NotImplementedException();
     }
 
     /**
@@ -70,6 +88,9 @@ public class Rational implements IRational {
      */
     @Override
     public String toString() {
-        throw new NotImplementedException();
+    	String s = "";
+    	return s;
+        //throw new NotImplementedException();
     }
+   
 }
