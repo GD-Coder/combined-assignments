@@ -101,7 +101,7 @@ public class FizzBuzz {
 		}
 		int counted = 0;
 		
-		for(int x = 0; x < arr.length; x++)
+		for(int x = 0; x < (end-start) + 1; x++)
 		{
 			String m = FizzBuzz.message(x);
 			if(m != null)
@@ -112,7 +112,7 @@ public class FizzBuzz {
 		String[] arr = new String[counted];
 		for(int x = 0; x < arr.length; x++)
 		{
-			
+				String m = FizzBuzz.message(x);
 				arr[x] = m; 
 				System.out.println(arr[x]);
 

@@ -61,7 +61,7 @@ public class Rational implements IRational {
     	{
     		throw new IllegalArgumentException();
     	}
-    	return new Rational(this.num, this.den);
+    	return new Rational(numerator, denominator);
     	
     	//throw new NotImplementedException();
     }
@@ -72,12 +72,7 @@ public class Rational implements IRational {
      * numerator and denominator are equal to this rational value's numerator and denominator,
      * false otherwise
      */
-    @Override
-    public boolean equals(Object obj) {
-    	
-    	return true;
-       // throw new NotImplementedException();
-    }
+   
 
     /**
      * If this is positive, the string should be of the form `numerator/denominator`
@@ -86,11 +81,46 @@ public class Rational implements IRational {
      *
      * @return a string representation of this rational value
      */
-    @Override
-    public String toString() {
-    	String s = "";
-    	return s;
-        //throw new NotImplementedException();
-    }
+    
+
+	
+
+	
+
+	@Override
+	public String toString() {
+		String s = "";
+		int d = Math.abs(getDenominator());
+		int n = Math.abs(getNumerator());
+		if((den<0 && num>0) || (den>0 && num <0))
+		{
+			s += "-";
+		}
+		
+			s += n + "/" + d;
+		
+		return s;
+	}
+
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Rational other = (Rational) obj;
+		if (den != other.den)
+			return false;
+		if (num != other.num)
+			return false;
+		return true;
+	}
+
+	
+
+	
    
 }

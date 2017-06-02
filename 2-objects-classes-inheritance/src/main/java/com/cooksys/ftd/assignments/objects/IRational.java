@@ -101,7 +101,7 @@ interface IRational {
     	}
     	int ff = (getNumerator() * that.getDenominator());
     	int gg = (that.getNumerator() * getDenominator());
-    	int num = gg - ff;
+    	int num = ff - gg;
     	return construct(num, (getDenominator() * that.getDenominator()));
         //throw new NotImplementedException();
     }
