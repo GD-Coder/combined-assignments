@@ -99,26 +99,23 @@ public class FizzBuzz {
 		if (end < start) {
 			throw new IllegalArgumentException();
 		}
-		int counted = 0;
 		
-		for(int x = 0; x < (end-start) + 1; x++)
-		{
-			String m = FizzBuzz.message(x);
-			if(m != null)
-			{
-				counted++;
-			}
+		int counted = 0;
+		String[] arr = new String[116];
+		for (int x = 0; x < arr.length; x++) {
+			counted++;
+			
 		}
-		String[] arr = new String[counted];
-		for(int x = 0; x < arr.length; x++)
-		{
-				String m = FizzBuzz.message(x);
-				arr[x] = m; 
-				System.out.println(arr[x]);
-
+		String[] st = new String[counted];
+		for (int x = 0; x < st.length; x++) {
+			
+			st[x] = message(x);
+			
+			System.out.println(st[x]);
 		}
-		return arr;
-		//throw new NotImplementedException();
+		
+		return st;
+		// throw new NotImplementedException();
 	}
 
 	/**
@@ -126,10 +123,9 @@ public class FizzBuzz {
 	 * the relevant messages to sysout
 	 */
 	public static void main(String[] args) {
-		FizzBuzz.messages(1, 115);
-		
-		//throw new NotImplementedException();
+		messages(1, 115);
+
+		// throw new NotImplementedException();
 	}
 
 }
-

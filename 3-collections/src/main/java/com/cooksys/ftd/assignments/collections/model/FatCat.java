@@ -5,7 +5,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 public class FatCat implements Capitalist {
 	private Integer sal;
 	private String nam;
-	private FatCat own;
+	private FatCat owner;
 
 	public FatCat(String name, int salary) {
 		this.nam = name;
@@ -16,6 +16,7 @@ public class FatCat implements Capitalist {
 	public FatCat(String name, int salary, FatCat owner) {
 		this.nam = name;
 		this.sal = salary;
+		this.owner = owner;
 		// throw new NotImplementedException();
 	}
 
@@ -42,7 +43,12 @@ public class FatCat implements Capitalist {
 	 */
 	@Override
 	public boolean hasParent() {
-		throw new NotImplementedException();
+		if(owner != null){
+			return true;
+			
+		}
+		else return false;
+		//throw new NotImplementedException();
 	}
 
 	/**
@@ -51,6 +57,52 @@ public class FatCat implements Capitalist {
 	 */
 	@Override
 	public FatCat getParent() {
-		throw new NotImplementedException();
+		if(this.owner != null)
+		{
+			//System.out.println(owner);
+			return owner;
+			
+		}
+		else return null;
+		//throw new NotImplementedException();
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nam == null) ? 0 : nam.hashCode());
+		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
+		result = prime * result + ((sal == null) ? 0 : sal.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FatCat other = (FatCat) obj;
+		if (nam == null) {
+			if (other.nam != null)
+				return false;
+		} else if (!nam.equals(other.nam))
+			return false;
+		if (owner == null) {
+			if (other.owner != null)
+				return false;
+		} else if (!owner.equals(other.owner))
+			return false;
+		if (sal == null) {
+			if (other.sal != null)
+				return false;
+		} else if (!sal.equals(other.sal))
+			return false;
+		return true;
+	}
+	
+	
 }
