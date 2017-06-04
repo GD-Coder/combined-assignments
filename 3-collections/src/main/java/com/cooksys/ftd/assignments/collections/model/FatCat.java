@@ -1,9 +1,7 @@
 package com.cooksys.ftd.assignments.collections.model;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class FatCat implements Capitalist {
-	private Integer sal;
+	private int sal;
 	private String nam;
 	private FatCat owner;
 
@@ -73,7 +71,7 @@ public class FatCat implements Capitalist {
 		int result = 1;
 		result = prime * result + ((nam == null) ? 0 : nam.hashCode());
 		result = prime * result + ((owner == null) ? 0 : owner.hashCode());
-		result = prime * result + ((sal == null) ? 0 : sal.hashCode());
+		result = prime * result + sal;
 		return result;
 	}
 
@@ -96,13 +94,12 @@ public class FatCat implements Capitalist {
 				return false;
 		} else if (!owner.equals(other.owner))
 			return false;
-		if (sal == null) {
-			if (other.sal != null)
-				return false;
-		} else if (!sal.equals(other.sal))
+		if (sal != other.sal)
 			return false;
 		return true;
 	}
+
+	
 	
 	
 }
