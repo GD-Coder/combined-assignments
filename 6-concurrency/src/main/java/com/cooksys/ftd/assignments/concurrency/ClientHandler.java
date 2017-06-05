@@ -6,6 +6,8 @@ public class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        throw new NotImplementedException();
+    	Runnable clientHandler = () -> {/* PLACE CODE HERE */};
+    	Thread clientHandlerThread = new Thread(clientHandler);
+    	clientHandlerThread.start();
     }
 }

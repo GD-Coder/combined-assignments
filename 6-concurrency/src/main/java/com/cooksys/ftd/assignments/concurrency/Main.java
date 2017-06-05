@@ -3,7 +3,7 @@ package com.cooksys.ftd.assignments.concurrency;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Main {
-
+	public static final int delay = 10;
     /**
      * First, load a {@link com.cooksys.ftd.assignments.concurrency.model.config.Config} object from
      * the <project-root>/config/config.xml file.
