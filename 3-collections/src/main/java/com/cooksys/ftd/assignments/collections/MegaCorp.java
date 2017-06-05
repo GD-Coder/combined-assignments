@@ -13,7 +13,8 @@ import com.cooksys.ftd.assignments.collections.model.Capitalist;
 import com.cooksys.ftd.assignments.collections.model.FatCat;
 
 public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
-	Set<Capitalist> capitol = new HashSet<>();
+	Set<Capitalist> capList = new HashSet<>();
+
 	/**
 	 * Adds a given element to the hierarchy.
 	 * <p>
@@ -35,34 +36,42 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	 */
 	@Override
 	public boolean add(Capitalist capitalist) {
-		
-		/* Check the passed variable to ensure it isn't null or already in the list. 
-		 * If so, the method returns false */
-		if (capitalist == null || capitol.contains(capitalist)) {
-			
+
+		/*
+		 * Check the passed variable to ensure it isn't null or already in the
+		 * list. If so, the method returns false
+		 */
+		if (capitalist == null || capList.contains(capitalist)) {
+
 			return false;
 		}
-		
+
 		if (!(capitalist instanceof FatCat) && !capitalist.hasParent()) {
 			return false;
 		}
-		
-		/* Check the passed variable see if it has a parent and if the parent has been added to the hierarchy,
-		 * if both conditions are not met, the element and its parent are added and the method returns true. */
-		if (capitalist.hasParent() && !capitol.contains(capitalist.getParent())) {
-			
+
+		/*
+		 * Check the passed variable see if it has a parent and if the parent
+		 * has been added to the hierarchy, if both conditions are not met, the
+		 * element and its parent are added and the method returns true.
+		 */
+		if (capitalist.hasParent() && !capList.contains(capitalist.getParent())) {
+
 			add(capitalist.getParent());
-			return capitol.add(capitalist);
+			return capList.add(capitalist);
 		} else if (capitalist.hasParent() && this.has(capitalist.getParent())) {
-			return capitol.add(capitalist);
+			return capList.add(capitalist);
 		}
-		
-		/* Check if the passed variable is an instance(child element) of the class FatCat and if it hasn't been added
-		 * If both conditions are met, the variable is added and the method returns true. */
+
+		/*
+		 * Check if the passed variable is an instance(child element) of the
+		 * class FatCat and if it hasn't been added If both conditions are met,
+		 * the variable is added and the method returns true.
+		 */
 		if (capitalist instanceof FatCat && !has(capitalist)) {
-			return capitol.add(capitalist);
+			return capList.add(capitalist);
 		}
-		
+
 		/* By default, this method passes false */
 		return false;
 	}
@@ -75,7 +84,7 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	 */
 	@Override
 	public boolean has(Capitalist capitalist) {
-		 return capitol.contains(capitalist);
+		return capList.contains(capitalist);
 		// throw new NotImplementedException();
 	}
 
@@ -85,7 +94,7 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	 */
 	@Override
 	public Set<Capitalist> getElements() {
-		return new HashSet<>(capitol);
+		return new HashSet<>(capList);
 	}
 
 	/**
@@ -94,16 +103,15 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	 */
 	@Override
 	public Set<FatCat> getParents() {
-		Set<FatCat> fc = new HashSet<>();
-		Iterator<Capitalist> cap = capitol.iterator();
-		while (cap.hasNext()) {
-			Capitalist capitalist = (Capitalist) cap.next();
+		Set<FatCat> fatCatParentSet = new HashSet<>();
+		Iterator<Capitalist> parentSetIterator = capList.iterator();
+		while (parentSetIterator.hasNext()) {
+			Capitalist capitalist = (Capitalist) parentSetIterator.next();
 			if (capitalist instanceof FatCat) {
-				fc.add((FatCat) capitalist);
+				fatCatParentSet.add((FatCat) capitalist);
 			}
 		}
-		return fc;
-		
+		return fatCatParentSet;
 
 	}
 
@@ -116,26 +124,25 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	 */
 	@Override
 	public Set<Capitalist> getChildren(FatCat fatCat) {
-		Set<Capitalist> comp = new HashSet<>();
-		Iterator<Capitalist> icomp = capitol.iterator();
-		if(!capitol.contains(fatCat))
-		{
-			return comp;
+		Set<Capitalist> tempCapList = new HashSet<>();
+		Iterator<Capitalist> capListIterator = capList.iterator();
+		if (!capList.contains(fatCat)) {
+			return tempCapList;
 		}
-		while (icomp.hasNext()) {
-			Capitalist capitalist = (Capitalist) icomp.next();
-			
-			if(fatCat == capitalist.getParent())
-			{
-				comp.add(capitalist);
-			
+		while (capListIterator.hasNext()) {
+			Capitalist capitalist = (Capitalist) capListIterator.next();
+
+			if (fatCat == capitalist.getParent()) {
+				tempCapList.add(capitalist);
+
 			}
 		}
-		
-		return comp;
 
-//		return capitol.stream().filter(cap -> fatCat.equals(cap.getParent())).collect(Collectors.toSet());
-		//throw new NotImplementedException();
+		return tempCapList;
+
+		// return capitol.stream().filter(cap ->
+		// fatCat.equals(cap.getParent())).collect(Collectors.toSet());
+		// throw new NotImplementedException();
 	}
 
 	/**
@@ -146,15 +153,15 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	@Override
 	public Map<FatCat, Set<Capitalist>> getHierarchy() {
 		Map<FatCat, Set<Capitalist>> hmap = new HashMap<>();
-		Iterator<FatCat> ifat = getParents().iterator();
-		while (ifat.hasNext()) {
-			FatCat fatCat = (FatCat) ifat.next();
+		Iterator<FatCat> fatCatIterator = getParents().iterator();
+		while (fatCatIterator.hasNext()) {
+			FatCat fatCat = (FatCat) fatCatIterator.next();
 			hmap.put(fatCat, getChildren(fatCat));
-			
+
 		}
-		
+
 		return hmap;
-		//throw new NotImplementedException();
+		// throw new NotImplementedException();
 	}
 
 	/**
@@ -165,28 +172,23 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	 *         hierarchy
 	 */
 	@Override
-	public List<FatCat> getParentChain(Capitalist capitalist) {		
+	public List<FatCat> getParentChain(Capitalist capitalist) {
 		List<FatCat> llFatCats = new LinkedList<>();
-		if (!has(capitalist))
-		{
+		if (!has(capitalist)) {
 			return llFatCats;
-		} 
-		else if (capitalist.hasParent())
-		{
-			
+		} else if (capitalist.hasParent()) {
+
 			FatCat fccheck = capitalist.getParent();
 			llFatCats.add(fccheck);
 			while (fccheck != null && has(fccheck.getParent())) {
 				fccheck = fccheck.getParent();
 				llFatCats.add(fccheck);
-				
-				
+
 			}
 		}
-		
-		
+
 		return llFatCats;
-		//throw new NotImplementedException();
-	
+		// throw new NotImplementedException();
+
 	}
 }
