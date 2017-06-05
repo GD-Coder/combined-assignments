@@ -1,5 +1,7 @@
 package com.cooksys.ftd.assignments.control;
 
+import static org.hamcrest.CoreMatchers.containsString;
+
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
@@ -100,21 +102,28 @@ public class FizzBuzz {
 			throw new IllegalArgumentException();
 		}
 		
-		int counted = 0;
-		String[] arr = new String[116];
-		for (int x = 0; x < arr.length; x++) {
-			counted++;
-			
-		}
-		String[] st = new String[counted];
-		for (int x = 0; x < st.length; x++) {
-			
-			st[x] = message(x);
-			
-			System.out.println(st[x]);
-		}
 		
-		return st;
+		String[] arr = new String[end];
+		int counted = 0;
+		for (int i = start; i <= end - 1; i++) {
+			String mess = message(i);
+			
+			if(mess != null && start != end)
+			{
+				arr[counted] = mess;
+				counted++;
+			}
+			
+		}
+		String[] arr2 = new String[counted];
+		for (int i = 0; i < arr.length; i++) {
+			if(arr[i] != null)
+			{
+				arr2[i] = arr[i];
+			}
+			
+		}
+		return arr2;
 		// throw new NotImplementedException();
 	}
 
