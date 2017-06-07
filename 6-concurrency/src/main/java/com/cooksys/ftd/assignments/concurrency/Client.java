@@ -4,10 +4,11 @@ import com.cooksys.ftd.assignments.concurrency.model.config.ClientConfig;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Client implements Runnable {
-	private ClientConfig clientCon;
+	Runnable clientHandler = new ClientHandler();
+	Thread clientHandlerThread = new Thread(clientHandler);
 
     public Client(ClientConfig config) {
-    	this.clientCon = config;
+    	
    
     }
 

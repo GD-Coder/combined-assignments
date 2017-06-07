@@ -1,1 +1,6 @@
-<config/>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+ <config>
+     <local port="4040"/>
+     <remote host="127.0.0.1" port="4040"/>
+     <student-file-path>C:/Users/ftd-5/code/combined-assignments/5-socket-io-serialization/config/student.xml</student-file-path>
+ </config> 

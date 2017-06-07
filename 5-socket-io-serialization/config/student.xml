@@ -1,1 +1,6 @@
-<student/>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<student firstName="Gerald" lastName="Downey">
+<favorite-ide>Visual Studio</favorite-ide>
+<favorite-language>C#</favorite-language>
+<favorite-paradigm>Programming</favorite-paradigm>
+</student>
