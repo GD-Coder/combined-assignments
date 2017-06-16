@@ -83,6 +83,7 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	 *         otherwise
 	 */
 	@Override
+	// Check if the passed capitalist has been added to the hierarchy and return true or false
 	public boolean has(Capitalist capitalist) {
 		return capList.contains(capitalist);
 		// throw new NotImplementedException();
@@ -93,6 +94,7 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	 *         have been added to the hierarchy
 	 */
 	@Override
+	// Grab the hierarchy or an empty list if none have been added
 	public Set<Capitalist> getElements() {
 		return new HashSet<>(capList);
 	}
@@ -105,6 +107,7 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	public Set<FatCat> getParents() {
 		Set<FatCat> fatCatParentSet = new HashSet<>();
 		Iterator<Capitalist> parentSetIterator = capList.iterator();
+		// Iterate through the hierarchy to find all of the parent elements
 		while (parentSetIterator.hasNext()) {
 			Capitalist capitalist = (Capitalist) parentSetIterator.next();
 			if (capitalist instanceof FatCat) {
@@ -126,6 +129,7 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	public Set<Capitalist> getChildren(FatCat fatCat) {
 		Set<Capitalist> tempCapList = new HashSet<>();
 		Iterator<Capitalist> capListIterator = capList.iterator();
+		// Iterate over the collection to find all child elements of the passed in capitalist
 		if (!capList.contains(fatCat)) {
 			return tempCapList;
 		}
@@ -154,6 +158,7 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 	public Map<FatCat, Set<Capitalist>> getHierarchy() {
 		Map<FatCat, Set<Capitalist>> hmap = new HashMap<>();
 		Iterator<FatCat> fatCatIterator = getParents().iterator();
+		// Iterate over the collection and add elements to the hierarchy map
 		while (fatCatIterator.hasNext()) {
 			FatCat fatCat = (FatCat) fatCatIterator.next();
 			hmap.put(fatCat, getChildren(fatCat));
@@ -177,7 +182,7 @@ public class MegaCorp implements Hierarchy<Capitalist, FatCat> {
 		if (!has(capitalist)) {
 			return llFatCats;
 		} else if (capitalist.hasParent()) {
-
+			// Iterate through the list and return the parent of the capitalist and the parent chain of the passed capitalist
 			FatCat fccheck = capitalist.getParent();
 			llFatCats.add(fccheck);
 			while (fccheck != null && has(fccheck.getParent())) {
